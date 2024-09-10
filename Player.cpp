@@ -60,6 +60,7 @@ void Player::Update(char* keys, char* prekeys)
 		//˜A‘Å‚µ‚Ä‚éŽž‚Í—Ž‰º‚µ‚È‚¢
 		player.velocity.X -= gravity;
 
+
 		for (int i = 0; i < 20; i++)
 		{
 			if (isbulletFlag[i] == false)
