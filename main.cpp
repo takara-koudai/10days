@@ -1,5 +1,6 @@
 ﻿#include <Novice.h>
 #include "Player.h"
+#include "Enemy.h"
 
 const char kWindowTitle[] = "3042_おちうど";
 
@@ -14,8 +15,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char preKeys[256] = {0};
 
 	Player* player_ = new Player();
+	Enemy* enemy_ = new Enemy();
 
 	player_->Initialize();
+	enemy_->Initialize();
 
 	int scene = 0;
 
@@ -46,9 +49,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0)
 			{
 				scene = 1;
-
-				//変数などリセット
-
 			}
 
 			break;
@@ -62,6 +62,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				//変数などリセット
 				player_->Reset();
 				player_->Initialize();
+
+				enemy_->Initialize();
 			}
 
 			break;
@@ -71,9 +73,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0)
 			{
 				scene = 3;
-
-				//変数などリセット
-
 			}
 
 			break;
@@ -82,12 +81,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 			player_->Update(keys, preKeys);
 
+			//enemy_->Update();
 			//クリア画面へ
 			if (player_->gameClear == true)
 			{
 				scene = 4;
 			}
 
+			//ゲームオーバー画面へ
 			if (player_->gameOver == true)
 			{
 				scene = 5;
@@ -111,8 +112,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			//ボタンを押すと戻る
 			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0)
 			{
-				//説明画面に戻る
-				scene = 1;
+				//タイトルに戻る
+				scene = 0;
 			}
 
 			break;
@@ -153,6 +154,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 			//ゲーム画面
 			player_->Draw();
+
+			//enemy_->Draw(enemy_->y);
 
 			break;
 

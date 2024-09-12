@@ -1,7 +1,6 @@
 #include "Player.h"
 #include <stdio.h>
 
-
 Player::~Player()
 {
 
@@ -34,12 +33,52 @@ void Player::Initialize()
 	};
 
 	//上から3つ目のブロック
-	/*block3 =
+	block3 =
 	{
 		{0,1000},
 		800,
 		32
-	};*/
+	};
+
+	//上から4つ目のブロック
+	block4 =
+	{
+		{0,1200},
+		800,
+		32
+	};
+
+	//上から5つ目のブロック
+	block5 =
+	{
+		{0,1500},
+		800,
+		32,
+	};
+
+	//上から6つ目のブロック
+	block6 =
+	{
+		{0,1600},
+		800,
+		32,
+	};
+
+	//上から7つ目のブロック
+	block7 =
+	{
+		{0,1800},
+		800,
+		32,
+	};
+
+	//上から8つ目のブロック
+	block8 =
+	{
+		{0,2200},
+		800,
+		32,
+	};
 
 
 	//ゴール
@@ -57,10 +96,15 @@ void Player::Initialize()
 		bulletradius[i] = 16;
 	}
 
+	//敵の初期化
+	enemy.Initialize();
+
 }
 
 void Player::Update(char* keys, char* prekeys)
 {
+
+	enemy.Update();
 
 #pragma region プレイヤーの動き
 	//右に動く
@@ -152,8 +196,8 @@ void Player::Update(char* keys, char* prekeys)
 			}
 #pragma endregion
 
-#pragma region ２つ目
-			//２つ目
+#pragma region 2つ目
+			//2つ目
 			if (bulletposX[i] <= block2.center.X + block2.raX &&
 				block2.center.X <= bulletposX[i] + bulletradius[i] &&
 				bulletposY[i] <= block2.center.Y + block2.raY &&
@@ -173,15 +217,257 @@ void Player::Update(char* keys, char* prekeys)
 			}
 
 			//一度消えたブロックに再び弾を当てても消えない
-			//２つ目のブロック
+			//2つ目のブロック
 			if (blockflag2 == true)
 			{
 				isbulletFlag[i] = true;
 			}
 #pragma endregion
 
+#pragma region ３つ目
+			if (bulletposX[i] <= block3.center.X + block3.raX &&
+				block3.center.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposY[i] <= block3.center.Y + block3.raY &&
+				block3.center.Y <= bulletposY[i] + bulletradius[i])
+			{
+				//当たるとカウントを増やして
+				//一定のカウントまで行くと消える
+				count3 += 1;
+				if (count3 >= 10)
+				{
+					//ブロックが消える
+					blockflag3 = true;
+				}
+
+				//弾を消す
+				isbulletFlag[i] = false;
+			}
+
+			//一度消えたブロックに再び弾を当てても消えない
+			//3つ目のブロック
+			if (blockflag3 == true)
+			{
+				isbulletFlag[i] = true;
+			}
+#pragma endregion
+
+#pragma region 4つ目
+
+			if (bulletposX[i] <= block4.center.X + block4.raX &&
+				block4.center.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposY[i] <= block4.center.Y + block4.raY &&
+				block4.center.Y <= bulletposY[i] + bulletradius[i])
+			{
+				//当たるとカウントを増やして
+				//一定のカウントまで行くと消える
+				count4 += 1;
+				if (count4 >= 10)
+				{
+					//ブロックが消える
+					blockflag4 = true;
+				}
+
+				//弾を消す
+				isbulletFlag[i] = false;
+			}
+
+			//一度消えたブロックに再び弾を当てても消えない
+			//3つ目のブロック
+			if (blockflag4 == true)
+			{
+				isbulletFlag[i] = true;
+			}
+#pragma endregion
+
+#pragma region 5つ目
+
+			if (bulletposX[i] <= block5.center.X + block5.raX &&
+				block5.center.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposY[i] <= block5.center.Y + block5.raY &&
+				block5.center.Y <= bulletposY[i] + bulletradius[i])
+			{
+				//当たるとカウントを増やして
+				//一定のカウントまで行くと消える
+				count5 += 1;
+				if (count5 >= 10)
+				{
+					//ブロックが消える
+					blockflag5 = true;
+				}
+
+				//弾を消す
+				isbulletFlag[i] = false;
+			}
+
+			//一度消えたブロックに再び弾を当てても消えない
+			//3つ目のブロック
+			if (blockflag5 == true)
+			{
+				isbulletFlag[i] = true;
+			}
+
+#pragma endregion
+
+#pragma region 6つ目
+
+			if (bulletposX[i] <= block6.center.X + block6.raX &&
+				block6.center.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposY[i] <= block6.center.Y + block6.raY &&
+				block6.center.Y <= bulletposY[i] + bulletradius[i])
+			{
+				//当たるとカウントを増やして
+				//一定のカウントまで行くと消える
+				count6 += 1;
+				if (count6 >= 10)
+				{
+					//ブロックが消える
+					blockflag6 = true;
+				}
+
+				//弾を消す
+				isbulletFlag[i] = false;
+			}
+
+			//一度消えたブロックに再び弾を当てても消えない
+			//3つ目のブロック
+			if (blockflag6 == true)
+			{
+				isbulletFlag[i] = true;
+			}
+#pragma endregion
+
+#pragma region 7つ目
+
+			if (bulletposX[i] <= block7.center.X + block7.raX &&
+				block7.center.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposY[i] <= block7.center.Y + block7.raY &&
+				block7.center.Y <= bulletposY[i] + bulletradius[i])
+			{
+				//当たるとカウントを増やして
+				//一定のカウントまで行くと消える
+				count7 += 1;
+				if (count7 >= 10)
+				{
+					//ブロックが消える
+					blockflag7 = true;
+				}
+
+				//弾を消す
+				isbulletFlag[i] = false;
+			}
+
+			//一度消えたブロックに再び弾を当てても消えない
+			//3つ目のブロック
+			if (blockflag7 == true)
+			{
+				isbulletFlag[i] = true;
+			}
+#pragma endregion
+
+#pragma region 8つ目
+
+			if (bulletposX[i] <= block8.center.X + block8.raX &&
+				block8.center.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposY[i] <= block8.center.Y + block8.raY &&
+				block8.center.Y <= bulletposY[i] + bulletradius[i])
+			{
+				//当たるとカウントを増やして
+				//一定のカウントまで行くと消える
+				count8 += 1;
+				if (count8 >= 10)
+				{
+					//ブロックが消える
+					blockflag8 = true;
+				}
+
+				//弾を消す
+				isbulletFlag[i] = false;
+			}
+
+			//一度消えたブロックに再び弾を当てても消えない
+			//3つ目のブロック
+			if (blockflag8 == true)
+			{
+				isbulletFlag[i] = true;
+			}
+#pragma endregion
+
+#pragma region 敵と弾の判定
+
+			if (enemy.enemy_[1].position.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposX[i] <= enemy.enemy_[1].position.X + enemy.enemy_[1].radius &&
+				enemy.enemy_[1].position.Y <= bulletposY[i] + bulletradius[i] &&
+				bulletposY[i] <= enemy.enemy_[1].position.Y + enemy.enemy_[1].radius)
+
+			{
+				enemy.isenemyFlag = true;
+			}
+
+			if (enemy.enemy_[2].position.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposX[i] <= enemy.enemy_[2].position.X + enemy.enemy_[2].radius &&
+				enemy.enemy_[2].position.Y <= bulletposY[i] + bulletradius[i] &&
+				bulletposY[i] <= enemy.enemy_[2].position.Y + enemy.enemy_[2].radius)
+
+			{
+				enemy.isenemyFlag2 = true;
+			}
+
+			if (enemy.enemy_[3].position.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposX[i] <= enemy.enemy_[3].position.X + enemy.enemy_[3].radius &&
+				enemy.enemy_[3].position.Y <= bulletposY[i] + bulletradius[i] &&
+				bulletposY[i] <= enemy.enemy_[3].position.Y + enemy.enemy_[3].radius)
+
+			{
+				enemy.isenemyFlag3 = true;
+			}
+
+			if (enemy.enemy_[4].position.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposX[i] <= enemy.enemy_[4].position.X + enemy.enemy_[4].radius &&
+				enemy.enemy_[4].position.Y <= bulletposY[i] + bulletradius[i] &&
+				bulletposY[i] <= enemy.enemy_[4].position.Y + enemy.enemy_[4].radius)
+
+			{
+				enemy.isenemyFlag4 = true;
+			}
+
+			if (enemy.enemy_[5].position.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposX[i] <= enemy.enemy_[5].position.X + enemy.enemy_[5].radius &&
+				enemy.enemy_[5].position.Y <= bulletposY[i] + bulletradius[i] &&
+				bulletposY[i] <= enemy.enemy_[5].position.Y + enemy.enemy_[5].radius)
+
+			{
+				enemy.isenemyFlag5 = true;
+			}
+
+			if (enemy.enemy_[6].position.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposX[i] <= enemy.enemy_[6].position.X + enemy.enemy_[6].radius &&
+				enemy.enemy_[6].position.Y <= bulletposY[i] + bulletradius[i] &&
+				bulletposY[i] <= enemy.enemy_[6].position.Y + enemy.enemy_[6].radius)
+
+			{
+				enemy.isenemyFlag6 = true;
+			}
+
+			if (enemy.enemy_[7].position.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposX[i] <= enemy.enemy_[7].position.X + enemy.enemy_[7].radius &&
+				enemy.enemy_[7].position.Y <= bulletposY[i] + bulletradius[i] &&
+				bulletposY[i] <= enemy.enemy_[7].position.Y + enemy.enemy_[7].radius)
+
+			{
+				enemy.isenemyFlag7 = true;
+			}
+
+			if (enemy.enemy_[8].position.X <= bulletposX[i] + bulletradius[i] &&
+				bulletposX[i] <= enemy.enemy_[8].position.X + enemy.enemy_[8].radius &&
+				enemy.enemy_[8].position.Y <= bulletposY[i] + bulletradius[i] &&
+				bulletposY[i] <= enemy.enemy_[8].position.Y + enemy.enemy_[8].radius)
+
+			{
+				enemy.isenemyFlag8 = true;
+			}
 
 
+#pragma endregion
 			
 		}
 
@@ -205,7 +491,7 @@ void Player::Update(char* keys, char* prekeys)
 			block.center.Y <= player.position.Y + player.radius)
 		{
 			gameOver = true;
-			Novice::ScreenPrintf(100, 70, "sinu");
+			//Novice::ScreenPrintf(100, 70, "sinu");
 		}
 	}
 #pragma endregion
@@ -220,15 +506,203 @@ void Player::Update(char* keys, char* prekeys)
 			block2.center.Y <= player.position.Y + player.radius)
 		{
 			gameOver = true;
-			Novice::ScreenPrintf(100, 70, "sinu");
+			//Novice::ScreenPrintf(100, 70, "sinu");
 		}
 	}
 #pragma endregion
 
+#pragma region ３つ目
 
+	if (blockflag3 == false)
+	{
+		//自分と消える床の判定
+		if (player.position.X <= block3.center.X + block3.raX &&
+			block3.center.X <= player.position.X + player.radius &&
+			player.position.Y <= block3.center.Y + block3.raY &&
+			block3.center.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+			//Novice::ScreenPrintf(100, 70, "sinu");
+		}
+	}
+
+#pragma endregion
+
+#pragma region 4つ目
+
+	if (blockflag4 == false)
+	{
+		//自分と消える床の判定
+		if (player.position.X <= block4.center.X + block4.raX &&
+			block4.center.X <= player.position.X + player.radius &&
+			player.position.Y <= block4.center.Y + block4.raY &&
+			block4.center.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+#pragma endregion
+
+#pragma region 5つ目
+
+	if (blockflag5 == false)
+	{
+		//自分と消える床の判定
+		if (player.position.X <= block5.center.X + block5.raX &&
+			block5.center.X <= player.position.X + player.radius &&
+			player.position.Y <= block5.center.Y + block5.raY &&
+			block5.center.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+#pragma endregion
+
+#pragma region 6つ目
+
+	if (blockflag6 == false)
+	{
+		//自分と消える床の判定
+		if (player.position.X <= block6.center.X + block6.raX &&
+			block6.center.X <= player.position.X + player.radius &&
+			player.position.Y <= block6.center.Y + block6.raY &&
+			block6.center.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+#pragma endregion
+
+#pragma region 7つ目
+
+	if (blockflag7 == false)
+	{
+		//自分と消える床の判定
+		if (player.position.X <= block7.center.X + block7.raX &&
+			block7.center.X <= player.position.X + player.radius &&
+			player.position.Y <= block7.center.Y + block7.raY &&
+			block7.center.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+#pragma endregion
+
+#pragma region 8つ目
+
+	if (blockflag8 == false)
+	{
+		//自分と消える床の判定
+		if (player.position.X <= block8.center.X + block8.raX &&
+			block8.center.X <= player.position.X + player.radius &&
+			player.position.Y <= block8.center.Y + block8.raY &&
+			block8.center.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+#pragma endregion
+
+#pragma region 自分と敵の判定
+
+	if (enemy.isenemyFlag == false)
+	{
+		if (player.position.X <= enemy.enemy_[1].position.X + enemy.enemy_[1].radius &&
+			enemy.enemy_[1].position.X <= player.position.X + player.radius &&
+			player.position.Y <= enemy.enemy_[1].position.Y + enemy.enemy_[1].radius &&
+			enemy.enemy_[1].position.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+	
+	if (enemy.isenemyFlag2 == false)
+	{
+		if (player.position.X <= enemy.enemy_[2].position.X + enemy.enemy_[2].radius &&
+			enemy.enemy_[2].position.X <= player.position.X + player.radius &&
+			player.position.Y <= enemy.enemy_[2].position.Y + enemy.enemy_[2].radius &&
+			enemy.enemy_[2].position.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+	if (enemy.isenemyFlag3 == false)
+	{
+		if (player.position.X <= enemy.enemy_[3].position.X + enemy.enemy_[3].radius &&
+			enemy.enemy_[3].position.X <= player.position.X + player.radius &&
+			player.position.Y <= enemy.enemy_[3].position.Y + enemy.enemy_[3].radius &&
+			enemy.enemy_[3].position.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+	if (enemy.isenemyFlag4 == false)
+	{
+		if (player.position.X <= enemy.enemy_[4].position.X + enemy.enemy_[4].radius &&
+			enemy.enemy_[4].position.X <= player.position.X + player.radius &&
+			player.position.Y <= enemy.enemy_[4].position.Y + enemy.enemy_[4].radius &&
+			enemy.enemy_[4].position.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+	if (enemy.isenemyFlag5 == false)
+	{
+		if (player.position.X <= enemy.enemy_[5].position.X + enemy.enemy_[5].radius &&
+			enemy.enemy_[5].position.X <= player.position.X + player.radius &&
+			player.position.Y <= enemy.enemy_[5].position.Y + enemy.enemy_[5].radius &&
+			enemy.enemy_[5].position.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+	if (enemy.isenemyFlag6 == false)
+	{
+		if (player.position.X <= enemy.enemy_[6].position.X + enemy.enemy_[6].radius &&
+			enemy.enemy_[6].position.X <= player.position.X + player.radius &&
+			player.position.Y <= enemy.enemy_[6].position.Y + enemy.enemy_[6].radius &&
+			enemy.enemy_[6].position.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+	if (enemy.isenemyFlag7 == false)
+	{
+		if (player.position.X <= enemy.enemy_[7].position.X + enemy.enemy_[7].radius &&
+			enemy.enemy_[7].position.X <= player.position.X + player.radius &&
+			player.position.Y <= enemy.enemy_[7].position.Y + enemy.enemy_[7].radius &&
+			enemy.enemy_[7].position.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+	
+	if (enemy.isenemyFlag8 == false)
+	{
+		if (player.position.X <= enemy.enemy_[8].position.X + enemy.enemy_[8].radius &&
+			enemy.enemy_[8].position.X <= player.position.X + player.radius &&
+			player.position.Y <= enemy.enemy_[8].position.Y + enemy.enemy_[8].radius &&
+			enemy.enemy_[8].position.Y <= player.position.Y + player.radius)
+		{
+			gameOver = true;
+		}
+	}
+
+#pragma endregion
 
 
 #pragma region ゴールとの判定
+
 	//ゴールと自分の当たり判定
 	if (player.position.X <= Goal.center.X + Goal.raX &&
 		Goal.center.X <= player.position.X + player.radius &&
@@ -237,14 +711,12 @@ void Player::Update(char* keys, char* prekeys)
 	{
 		//クリア
 		gameClear = true;
-		Novice::ScreenPrintf(300, 300, "atari");
 	}
 #pragma endregion
 
+#pragma region 時間制限
 	//時間制限処理
 	timer++;
-
-	Novice::ScreenPrintf(50, 350, "%d", timer);
 
 	if (timer == 1800)
 	{
@@ -260,6 +732,15 @@ void Player::Update(char* keys, char* prekeys)
 		timerflag2 = false;
 		timerflag3 = true;
 	}
+
+	//30秒を越えるとゲームオーバーになる
+	if (timer >= 1800)
+	{
+		//ゲームオーバー
+		gameOver = true;
+	}
+
+#pragma endregion
 
 
 #pragma endregion
@@ -403,6 +884,53 @@ void Player::Draw()
 	//背景
 	Novice::DrawBox(0, 0, 800, 800, 0.0f, BLACK, kFillModeSolid);
 
+#pragma region 敵の描画
+
+	if (enemy.isenemyFlag == false)
+	{
+		Novice::DrawSprite(enemy.enemy_[1].position.X, enemy.enemy_[1].position.Y - scrolY, enemyirasuto, 1, 1, 0.0f, WHITE);
+	}
+
+	if (enemy.isenemyFlag2 == false)
+	{
+		Novice::DrawSprite(enemy.enemy_[2].position.X, enemy.enemy_[2].position.Y - scrolY, enemyirasuto2, 1, 1, 0.0f, WHITE);
+	}
+
+	if (enemy.isenemyFlag3 == false)
+	{
+		Novice::DrawSprite(enemy.enemy_[3].position.X, enemy.enemy_[3].position.Y - scrolY, enemyirasuto3, 1, 1, 0.0f, WHITE);
+	}
+
+	if (enemy.isenemyFlag4 == false)
+	{
+		Novice::DrawSprite(enemy.enemy_[4].position.X, enemy.enemy_[4].position.Y - scrolY, enemyirasuto2, 1, 1, 0.0f, WHITE);
+	}
+
+	if (enemy.isenemyFlag5 == false)
+	{
+		Novice::DrawSprite(enemy.enemy_[5].position.X, enemy.enemy_[5].position.Y - scrolY, enemyirasuto3, 1, 1, 0.0f, WHITE);
+	}
+
+	if (enemy.isenemyFlag6 == false)
+	{
+		Novice::DrawSprite(enemy.enemy_[6].position.X, enemy.enemy_[6].position.Y - scrolY, enemyirasuto, 1, 1, 0.0f, WHITE);
+	}
+
+	if (enemy.isenemyFlag7 == false)
+	{
+		Novice::DrawSprite(enemy.enemy_[7].position.X, enemy.enemy_[7].position.Y - scrolY, enemyirasuto2, 1, 1, 0.0f, WHITE);
+	}
+
+	if (enemy.isenemyFlag8 == false)
+	{
+		Novice::DrawSprite(enemy.enemy_[8].position.X, enemy.enemy_[8].position.Y - scrolY, enemyirasuto3, 1, 1, 0.0f, WHITE);
+	}
+
+
+
+#pragma endregion
+
+
 	//残り時間(合計30秒)
 	if (timerflag == false) //30秒
 	{
@@ -428,7 +956,6 @@ void Player::Draw()
 	}
 
 	//自分
-	//Novice::DrawSprite(player.position.X - player.radius, player.position.Y - player.radius - scrolY, irasuto, 1, 1, 0.0f, WHITE);
 	Novice::DrawSprite(player.position.X - player.radius, player.position.Y - player.radius - scrolY, plirasuto, 1, 1, 0.0f, WHITE);
 
 	//ゴール
@@ -446,13 +973,50 @@ void Player::Draw()
 
 	if (blockflag2 == false)
 	{
-		//上から２つ目のブロック
+		//上から2つ目のブロック
 		Novice::DrawBox(block2.center.X, block2.center.Y - scrolY, block2.raX, block2.raY, 0.0f, WHITE, kFillModeSolid);
 	}
 
+	if (blockflag3 == false)
+	{
+		//上から3つ目のブロック
+		Novice::DrawBox(block3.center.X, block3.center.Y - scrolY, block3.raX, block3.raY, 0.0f, WHITE, kFillModeSolid);
+	}
+
+	if (blockflag4 == false)
+	{
+		//上から4つ目のブロック
+		Novice::DrawBox(block4.center.X, block4.center.Y - scrolY, block4.raX, block4.raY, 0.0f, WHITE, kFillModeSolid);
+	}
+
+	if (blockflag5 == false)
+	{
+		//上から5つ目のブロック
+		Novice::DrawBox(block5.center.X, block5.center.Y - scrolY, block5.raX, block5.raY, 0.0f, WHITE, kFillModeSolid);
+	}
+
+	if (blockflag6 == false)
+	{
+		//上から6つ目のブロック
+		Novice::DrawBox(block6.center.X, block6.center.Y - scrolY, block6.raX, block6.raY, 0.0f, WHITE, kFillModeSolid);
+	}
+
+	if (blockflag7 == false)
+	{
+		//上から6つ目のブロック
+		Novice::DrawBox(block7.center.X, block7.center.Y - scrolY, block7.raX, block7.raY, 0.0f, WHITE, kFillModeSolid);
+	}
+
+	if (blockflag8 == false)
+	{
+		//上から6つ目のブロック
+		Novice::DrawBox(block8.center.X, block8.center.Y - scrolY, block8.raX, block8.raY, 0.0f, WHITE, kFillModeSolid);
+	}
+
+
 #pragma endregion
 	
-	//ブロック描画
+	//ブロック描画(壁と一番下の床)
 	for (int y = 0; y < 75; y++)
 	{
 		for (int x = 0; x < 60; x++)
@@ -499,6 +1063,14 @@ void Player::Reset()
 	count7 = 0;
 	count8 = 0;
 
+	enemy.isenemyFlag = false;
+	enemy.isenemyFlag2 = false;
+	enemy.isenemyFlag3 = false;
+	enemy.isenemyFlag4 = false;
+	enemy.isenemyFlag5 = false;
+	enemy.isenemyFlag6 = false;
+	enemy.isenemyFlag7 = false;
+	enemy.isenemyFlag8 = false;
 
 	//弾
 	const int bulletnum = 20;
