@@ -1,7 +1,7 @@
 ﻿#include <Novice.h>
 #include "Player.h"
 
-const char kWindowTitle[] = "LC1C_20_タナカコウダイ_タイトル";
+const char kWindowTitle[] = "3042_おちうど";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -17,6 +17,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	player_->Initialize();
 
+	int scene = 0;
+
+	int title = Novice::LoadTexture("./OP.png");
+	int setumei = Novice::LoadTexture("./setumei.png");
+	int setumei2 = Novice::LoadTexture("./setumei2.png");
+	int zanpai = Novice::LoadTexture("./zanpai.png");
+	int seiha = Novice::LoadTexture("./seiha.png");
+
+
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
 		// フレームの開始
@@ -30,7 +39,84 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
-		player_->Update(keys, preKeys);
+		switch (scene)
+		{
+		case 0://タイトル
+
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0)
+			{
+				scene = 1;
+
+				//変数などリセット
+
+			}
+
+			break;
+
+		case 1: //説明
+
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0)
+			{
+				scene = 2;
+
+				//変数などリセット
+				player_->Reset();
+				player_->Initialize();
+			}
+
+			break;
+
+		case 2: //説明
+			
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0)
+			{
+				scene = 3;
+
+				//変数などリセット
+
+			}
+
+			break;
+
+		case 3: //ゲーム画面
+
+			player_->Update(keys, preKeys);
+
+			//クリア画面へ
+			if (player_->gameClear == true)
+			{
+				scene = 4;
+			}
+
+			if (player_->gameOver == true)
+			{
+				scene = 5;
+			}
+
+			break;
+
+		case 4://クリア画面
+
+			//ボタンを押すと戻る
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0)
+			{
+				//タイトルに戻る
+				scene = 0;
+			}
+
+			break;
+
+		case 5://ゲームオーバー画面
+
+			//ボタンを押すと戻る
+			if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0)
+			{
+				//説明画面に戻る
+				scene = 1;
+			}
+
+			break;
+		}
 
 		///
 		/// ↑更新処理ここまで
@@ -40,7 +126,50 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓描画処理ここから
 		///
 
-		player_->Draw();
+		switch (scene)
+		{
+		case 0:
+
+			//タイトル
+			Novice::DrawSprite(0, 0, title, 1, 1, 0.0f, WHITE);
+
+			break;
+			
+		case 1:
+
+			//説明
+			Novice::DrawSprite(0, 0, setumei, 1, 1, 0.0f, WHITE);
+
+			break;
+
+		case 2:
+
+			//説明
+			Novice::DrawSprite(0, 0, setumei2, 1, 1, 0.0f, WHITE);
+
+			break;
+
+		case 3:
+
+			//ゲーム画面
+			player_->Draw();
+
+			break;
+
+		case 4:
+
+			//クリア画面
+			Novice::DrawSprite(0, 0, seiha, 1, 1, 0.0f, WHITE);
+			
+			break;
+
+		case 5:
+
+			//ゲームオーバー画面
+			Novice::DrawSprite(0, 0, zanpai, 1, 1, 0.0f, WHITE);
+
+			break;
+		}
 
 		///
 		/// ↑描画処理ここまで
